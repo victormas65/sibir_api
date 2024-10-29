@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from autentication.models import UserModel, RoleModel, UserModel
+from authentication.models import UserModel, RoleModel, UserModel
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.serializers import ValidationError
 from django.contrib.auth import authenticate
@@ -21,7 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
   def save(self):
     if self.instance:
       instance = self.instance
-      instance.name = self.validated_data.get('name')
+      instance.first_name = self.validated_data.get('first_name')
       instance.last_name = self.validated_data.get('last_name')
       instance.email = self.validated_data.get('email')
       instance.status = self.validated_data.get('status')
@@ -48,7 +48,7 @@ class LoginSerializer(TokenObtainPairSerializer):
   def get_token(self, user):
     token = super().get_token(user)
     token['email'] = user.email
-    token['name'] = user.name
+    token['first_name'] = user.first_name
     token['last_name'] = user.last_name
     return token
   

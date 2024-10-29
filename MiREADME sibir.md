@@ -8,7 +8,7 @@
 
 
 ## cadena de conexion para tu BD
-    crea bd Postgres en blanco: "django_sibir"
+    crea bd Postgres en blanco: "sibir_api"
     actualiza datos de conexion en ".env"
     
 
@@ -70,10 +70,10 @@ cadena de conexion para BD en render
 ```
 
 
-1.- importar user del modulo de autentication
+1.- importar user del modulo de authentication
 
 
-2.- importar manager del modulo de autentication
+2.- importar manager del modulo de authentication
 
 
 3.- models

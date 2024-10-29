@@ -10,13 +10,13 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
+# Quick-start development settings - unsuitable for prroduction
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: keep the secret key used in prroduction secret!
 SECRET_KEY = "django-insecure-b4j_zc0=jooe&ih)+1+z&nqb*%@fcs#*_if0jyjp_x1ei+_j#p"
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug turned on in prroduction!
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -25,6 +25,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "unfold", 	 											# unfold: before django.contrib.admin
+    "unfold.contrib.filters",  				# unfold: optional, if special filters are needed
+    "unfold.contrib.forms",  					# unfold: optional, if special form elements are needed
+    "unfold.contrib.inlines", 				# unfold: optional, if special inlines are needed
+    "unfold.contrib.import_export", 	# unfold: optional, if django-import-export package iused
+    "unfold.contrib.guardian", 	 			# unfold: optional, if django-guardian package used
+    "unfold.contrib.simple_history",  # unfold: optional, if django-simple-history package used
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -35,7 +42,9 @@ INSTALLED_APPS = [
     "drf_yasg",
     "corsheaders",
     "rest_framework_simplejwt",
-    "autentication",
+    "authentication",
+    "publication",
+    "blog",
 ]
 
 MIDDLEWARE = [
@@ -48,7 +57,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "sibir_api.urls"
+ROOT_URLCONF = "core.urls"
 
 TEMPLATES = [
     {
@@ -66,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "sibir_api.wsgi.application"
+WSGI_APPLICATION = "core.wsgi.application"
 
 
 # Database
@@ -130,7 +139,8 @@ if not DEBUG:
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # INTEGRA MODELO SEGURIDAD CON DJANGO
-AUTH_USER_MODEL = "autentication.UserModel"
+AUTH_USER_MODEL = "authentication.UserModel"
+
 
 
 #### NO VALIDADO

@@ -62,10 +62,12 @@ se crean los views.py
 ```python: views.py
     from rest_framework import generics, status
     from rest_framework.response import Response
-    from .models import ProductCategoryModel
-    from .serilizers import ProductCategorySerializer
+    from .models import HoldingCategoryModel
+    from .serilizers import HoldingCategorySerializer
 
-    class ProductCategoryView(generics.ListAPIView):
+    class HoldingCategoryView(generics.ListAPIView):
+
+      
 ```
 Ver video 10/10/ desde las 9:30 pm
 

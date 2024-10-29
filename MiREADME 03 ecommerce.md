@@ -36,9 +36,9 @@
 ```
 
 
-1.- importar user del modulo de autentication
+1.- importar user del modulo de authentication
 
 
-2.- importar manager del modulo de autentication
+2.- importar manager del modulo de authentication
 
 

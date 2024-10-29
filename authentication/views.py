@@ -1,5 +1,5 @@
 from rest_framework import generics, status
-from autentication.serializers import RoleModel, UserModel
+from authentication.serializers import RoleModel, UserModel
 from .serializers import RoleSerializer, UserSerializer, LoginSerializer
 from rest_framework.response import Response
 from drf_yasg.utils import swagger_auto_schema        # schema para el swagger
@@ -18,6 +18,7 @@ from .permissions import (
 class CreateRoleView(generics.CreateAPIView):
   queryset = RoleModel.objects.all()
   serializer_class = RoleSerializer
+  permission_classes = [IsAuthenticated, IsAdmin]
 
   """ Crea un nuevo rol """
   @swagger_auto_schema(tags=['Roles'])
@@ -50,6 +51,7 @@ class ListRoleView(generics.ListAPIView):
 class CreateUserView(generics.CreateAPIView):
 # queryset = UserModel.objects.all()
   serializer_class = UserSerializer
+  permission_classes = [IsAuthenticated, IsAdmin]
 
   @swagger_auto_schema(tags=['Usuarios'])
   def post(self, request):
@@ -65,6 +67,7 @@ class CreateUserView(generics.CreateAPIView):
 class UpdateUserView(generics.UpdateAPIView):
   queryset = UserModel.objects.all()
   serializer_class = UserSerializer
+  permission_classes = [IsAuthenticated, IsAdmin]
 
   @swagger_auto_schema(tags=['Usuarios']) 
   def put(self, request, *args, **kwargs):
@@ -119,5 +122,3 @@ class LoginView(TokenObtainPairView):
       }, status=status.HTTP_401_UNAUTHORIZED
     )
     
-
-
