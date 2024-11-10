@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     "authentication",
     "publication",
     "blog",
+    "propiedades",
+    "testimonios",
+    "contactos",
+    "tipoinformacion"
 ]
 
 MIDDLEWARE = [
