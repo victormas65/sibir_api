@@ -11,7 +11,7 @@ class Propiedad(models.Model):
     nSSHH = models.PositiveIntegerField(verbose_name="Número de SSHH")
     nCocheras = models.PositiveIntegerField(verbose_name="Número de Cocheras")
     direccion = models.CharField(max_length=300)
-    archivo_imagen = models.CharField(max_length=255, blank=True, null=True)
+    archivoImagen = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Propiedades2'
