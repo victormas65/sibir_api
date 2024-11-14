@@ -3,7 +3,7 @@ from cloudinary.models import CloudinaryField
 
 class Propiedad(models.Model):
     id = models.AutoField(primary_key=True)
-    imagen = models.ImageField(upload_to="imagenes")
+    imagen = models.CharField(max_length=500)
     titulo = models.CharField(max_length=200)
     descripcion = models.TextField()
     precio = models.DecimalField(max_digits=10, decimal_places=2)
