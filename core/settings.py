@@ -2,7 +2,10 @@ from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
 import os
+import cloudinary
 from cloudinary import config
+
+from cloudinary.api import resources
 
 load_dotenv()
 
@@ -48,7 +51,9 @@ INSTALLED_APPS = [
     "propiedades",
     "testimonios",
     "contactos",
-    "tipoinformacion"
+    "tipoinformacion",
+    "cloudinary_storage",
+    "cloudinary",
 ]
 
 MIDDLEWARE = [
@@ -175,6 +180,11 @@ CLODINARY_STORAGE = {
   'CLOUDINARY_CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
   'CLOUDINARY_API_KEY': os.getenv('CLOUDINARY_API_KEY'),
   'CLOUDINARY_API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+  'CLOUDINARY_URL': os.getenv('CLOUDINARY_URL'),
+
 }
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 CORS_ALLOW_ALL_ORIGINS = True

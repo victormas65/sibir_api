@@ -15,15 +15,20 @@
 
    # migraciones
    python manage.py makemigrations authentication    # migracion de authentication
-   python manage.py makemigrations publication       # migracion de publication
+   python manage.py makemigrations publication 
+   python manage.py makemigrations propiedades
+   python manage.py makemigrations testimonios
+   python manage.py makemigrations tipoinformacion
+   python manage.py makemigrations contactos    # migracion de publication
    python manage.py migrate                          # ejecuta migraciones 
-   python manage.py showmigrations                   # listar migraciones
+   python manage.py showmigrations
+                      # listar migraciones
 
    # crear un superusuario
        python manage.py createsuperuser
           email: admin@gmail.com
           First Name: admin
-          Last Name: V+
+          Last Name: admin
           password: adminadmin
           Password (again): adminadmin
 ```

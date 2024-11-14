@@ -5,19 +5,20 @@ from authentication.models import UserModel
 
 # modelo para las categorias
 class CategoryModel(models.Model):
-  id = models.AutoField(primary_key=True)
-  name = models.CharField(max_length=100)
-  status = models.BooleanField(default=True)
-  created_at = models.DateTimeField(auto_now_add=True)
-  updated_at = models.DateTimeField(auto_now=True)
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    status = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-  class Meta:
-    verbose_name = 'Categoria'
-    verbose_name_plural = 'Categorias'
-    db_table = 'categories'
+    class Meta:
+        verbose_name = 'Categoria'
+        verbose_name_plural = 'Categorias'
+        db_table = 'categories'
 
-  def __str__(self):
-      return self.get_name_display()
+    def __str__(self):
+        return self.name  # Cambiar a 'name' ya que no tiene 'choices'
+
 
 
 # modelo para las propiedades
