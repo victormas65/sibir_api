@@ -9,6 +9,8 @@ from .models import (
 from rest_framework.serializers import ValidationError
 from drf_yasg.utils import swagger_auto_schema        # schema para el swagger
 #from django.db import blog 
+from django.db import transaction  # Importa transaction correctamente
+
 
 
 #------------------------------------------------------------------------------
@@ -24,7 +26,8 @@ class CreatePostView(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         """ Crear un Post del Blog (método POST) """
         try:
-            with blog.atomic():
+            # Usamos transaction.atomic() en lugar de blog.atomic()
+            with transaction.atomic():
                 response = super().post(request, *args, **kwargs)
                 post_data = response.data
 
@@ -36,7 +39,7 @@ class CreatePostView(generics.CreateAPIView):
             return Response({
                 'message': 'Error al crear el post del blog',
                 'errors': str(e)
-            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR) 
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 # Listar los post del blog 
 class ListPostView(generics.ListAPIView):
