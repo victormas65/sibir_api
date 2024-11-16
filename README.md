@@ -20,6 +20,7 @@
    python manage.py makemigrations testimonios
    python manage.py makemigrations tipoinformacion
    python manage.py makemigrations contactos    # migracion de publication
+   python manage.py makemigrations blog 
    python manage.py migrate                          # ejecuta migraciones 
    python manage.py showmigrations
                       # listar migraciones
