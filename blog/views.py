@@ -1,6 +1,6 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
-from .serializers import PostSerializer
+from .serializers import PostSerializer, PostSerializerTest
 from .models import PostModel
 from rest_framework.serializers import ValidationError
 from drf_yasg.utils import swagger_auto_schema
@@ -16,19 +16,20 @@ class CreatePostView(generics.CreateAPIView):
         try:
             # Usamos el serializer para validar y guardar el objeto
             serializer = self.get_serializer(data=request.data)
-            if serializer.is_valid():
+            if serializer.is_valid(raise_exception=True):
                 post = serializer.save()  # Guarda el post en la base de datos
-
+                # print("post####",vars(post))
                 # Personalizar la respuesta con todos los datos esperados
                 return Response({
                     'id': post.id,  # ID generado automáticamente
-                    'holdingid': post.holdingid,  # URL de imagen simulada
+                    'holding_id': post.holding_id,  # URL de imagen simulada
                     'titulo': post.title,  # Título
                     'autor': post.customer.first_name + " " + post.customer.last_name,  # Nombre completo del autor
                     'descripcion': post.description,  # Descripción
                     'fecha': post.created_at.strftime('%Y-%m-%d %H:%M:%S'),  # Fecha formateada
                     'status': post.status,  # Estado
                 }, status=status.HTTP_201_CREATED)
+                
             else:
                 return Response({
                     'message': 'Datos inválidos',
@@ -44,7 +45,7 @@ class CreatePostView(generics.CreateAPIView):
 # Listar los post del blog
 class ListPostView(generics.ListAPIView):
     queryset = PostModel.objects.all()
-    serializer_class = PostSerializer
+    serializer_class = PostSerializerTest
     
     @swagger_auto_schema(tags=['Posts del Blog'])
     def get(self, request, *args, **kwargs):
@@ -55,3 +56,5 @@ class ListPostView(generics.ListAPIView):
             'message': 'Listado de post del blog exitosamente',
             'data': response.data
         }, status=status.HTTP_200_OK)
+    
+

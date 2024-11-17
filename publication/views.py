@@ -127,7 +127,7 @@ class ListHoldingView(generics.ListAPIView):
   queryset = HoldingModel.objects.all()
   serializer_class = HoldingSerializer
   pagination_class = Pagination
-  permission_classes = [IsAuthenticated, IsSellerOrAdmin]
+  # permission_classes = [IsAuthenticated, IsSellerOrAdmin]
 
   @swagger_auto_schema(tags=[ HOLDING_TAG ])
   def get(self, request, *args, **kwargs):
