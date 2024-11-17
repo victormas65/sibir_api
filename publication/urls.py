@@ -13,5 +13,7 @@ urlpatterns = [
   path('holdings/create', CreateHoldingView.as_view()),
   path('holdings/update/<int:pk>', UpdateHoldingView.as_view()),
   path('holdings/delete/<int:pk>', DeleteHoldingView.as_view()),
-  path('holdings/<int:id>/', ListHoldingView.as_view(), name='holding_detail'),
+  
+ # Ruta para obtener un Holding específico por ID
+  path('holdings/<int:id>', HoldingDetailView.as_view(), name='holding-detail'),
 ]
