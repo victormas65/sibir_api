@@ -15,15 +15,16 @@ class CustomerAdmin(ModelAdmin):
 
 @admin.register(PostModel)
 class PostAdmin(ModelAdmin):
-  list_display = ('id', 'title', 'description', 'status', 'customer', 'holding')
-  list_filter = ('status',)
-  search_fields = ('customer', 'holding', 'title', 'description')
-  ordering = ('holding','customer')
-  fieldsets = (
-    (None, {'fields': ('title', 'description')}),
-    ('Estado', {'fields': ('status',)}),
-    ('Fechas', {'fields': ('created_at', 'updated_at')}),
-  )
-  readonly_fields = ('created_at', 'updated_at')
+    list_display = ('id', 'title', 'description', 'status', 'customer', 'holding')
+    list_filter = ('status',)
+    search_fields = ('customer__first_name', 'customer__last_name', 'holding__id', 'title', 'description')
+    ordering = ('holding', 'customer')
+    fieldsets = (
+        (None, {'fields': ('title', 'description', 'customer', 'holding')}),  # Agregar aquí los campos obligatorios
+        ('Estado', {'fields': ('status',)}),
+        ('Fechas', {'fields': ('created_at', 'updated_at')}),
+    )
+    readonly_fields = ('created_at', 'updated_at')
+
 
 # Register your models here.
