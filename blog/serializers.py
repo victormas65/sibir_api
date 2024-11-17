@@ -2,13 +2,20 @@ from rest_framework import serializers
 from .models import PostModel, CustomerModel, HoldingModel
 
 class HoldingSerializerTest(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
     class Meta:
         model = HoldingModel
         fields = [
             'id',
             'image'
-
         ]
+
+    def get_image(self, obj):
+        # Verifica si hay una URL de imagen y remueve 'image/upload/' si está presente
+        if obj.image and 'image/upload/' in obj.image.url:
+            return obj.image.url.replace('image/upload/', '', 1)
+        return obj.image.url if obj.image else None
 
 class PostSerializer(serializers.ModelSerializer):
     # Campo de solo lectura para obtener el nombre completo del cliente

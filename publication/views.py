@@ -141,6 +141,35 @@ class ListHoldingView(generics.ListAPIView):
       'next': response.data['next'],
       'previous': response.data['previous']
       }, status=status.HTTP_200_OK)
+  
+# # Lista de holding por ID
+# class ListHoldingView(generics.ListAPIView):
+#     # Definir el serializador y la paginación
+#     serializer_class = HoldingSerializer
+#     pagination_class = Pagination
+
+#     @swagger_auto_schema(tags=["Holding"])  # Etiqueta para la documentación Swagger
+#     def get(self, request, *args, **kwargs):
+#         """ Obtener propiedades por ID (si se pasa el ID como parámetro) """
+        
+#         # Si se pasa un ID en los parámetros de la URL, filtra por ese ID
+#         id_param = kwargs.get('id')  # Captura el ID de la URL
+        
+#         if id_param:
+#             # Filtra por el ID si es proporcionado
+#             queryset = HoldingModel.objects.filter(id=id_param)
+#         else:
+#             # Si no se pasa el ID, retorna todos los holdings (opcional)
+#             queryset = HoldingModel.objects.all()
+        
+#         # Serialización y respuesta
+#         serializer = self.get_serializer(queryset, many=True)
+        
+#         return Response({
+#             'message': 'Propiedades listadas exitosamente',
+#             'data': serializer.data,
+#             'count': len(serializer.data),
+#         }, status=status.HTTP_200_OK)
 
 # Lista de propiedades activas (activos)
 class ListActiveHoldingView(generics.ListAPIView):

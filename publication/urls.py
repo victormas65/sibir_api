@@ -13,4 +13,5 @@ urlpatterns = [
   path('holdings/create', CreateHoldingView.as_view()),
   path('holdings/update/<int:pk>', UpdateHoldingView.as_view()),
   path('holdings/delete/<int:pk>', DeleteHoldingView.as_view()),
+  path('holdings/<int:id>/', ListHoldingView.as_view(), name='holding_detail'),
 ]
